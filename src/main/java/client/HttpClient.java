@@ -1,3 +1,5 @@
+package client;
+
 import java.util.Map;
 
 public interface HttpClient {

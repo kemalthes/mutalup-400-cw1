@@ -1,3 +1,6 @@
+import client.HttpClient;
+import client.HttpClientImpl;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +12,7 @@ public class Main {
         testPost(httpClient);
         testPut(httpClient);
         testDelete(httpClient);
+
     }
 
     private static void testGet(HttpClient httpClient) {
