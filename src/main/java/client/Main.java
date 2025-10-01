@@ -1,5 +1,4 @@
-import client.HttpClient;
-import client.HttpClientImpl;
+package client;
 
 import java.util.HashMap;
 import java.util.Map;
