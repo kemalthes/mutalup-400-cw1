@@ -43,7 +43,7 @@ public class UserDaoImpl implements UserDao {
     public void save(User user) {
         //language=sql
         String sql = "insert into users (name, lastname, login, password) values (?, ?, ?, ?)";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getLastName());
             preparedStatement.setString(3, user.getLogin());
