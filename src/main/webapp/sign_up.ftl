@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="ru">
 <#include "base.ftl">
 <#macro title>Sign Up</#macro>
 <#macro content>
@@ -12,6 +12,16 @@
             Password:
             <label>
                 <input type="password" name="password" placeholder="password">
+            </label>
+            <br>
+            Name:
+            <label>
+                <input type="text" name="name" placeholder="name">
+            </label>
+            <br>
+            LastName:
+            <label>
+                <input type="text" name="lastname" placeholder="last name">
             </label>
             <br>
             <input type="submit" value="Sign up">

@@ -1,4 +1,4 @@
 package dto;
 
-public record UserDto(String name, Integer score) {
+public record UserDto(String name, String lastName, String login) {
 }

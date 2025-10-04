@@ -1,7 +1,7 @@
 package servlet;
 
 import dto.UserDto;
-import repository.UserRepository;
+import service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,14 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "User", urlPatterns = "/users")
+@WebServlet(name = "user", urlPatterns = "/users")
 public class UserServlet extends HttpServlet {
 
-    private final UserRepository repository = new UserRepository();
+    private final UserService service = new UserService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<UserDto> users = repository.getAll();
+        List<UserDto> users = service.getAll();
         if (users != null && !users.isEmpty()) {
             req.setAttribute("users", users);
         }

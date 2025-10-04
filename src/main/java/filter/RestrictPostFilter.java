@@ -10,6 +10,7 @@ import java.io.IOException;
 
 @WebFilter(filterName = "deleteRestrict", urlPatterns = "/users")
 public class RestrictPostFilter extends HttpFilter {
+
     @Override
     public void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
         if (req.getMethod().equals("POST")) {
