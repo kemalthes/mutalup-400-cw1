@@ -1,6 +1,7 @@
 <html lang="en">
 <#include "base.ftl">
 <#macro title>Log in</#macro>
+<#macro scripts></#macro>
 <#macro content>
     <div id="login_form">
         <#if Session.user?has_content>

@@ -1,13 +1,30 @@
 <html lang="ru">
 <#include "base.ftl">
 <#macro title>Sign Up</#macro>
+<#macro scripts>
+    <script>
+        var timeout
+        console.log("bulat")
+        $(document).on("input", "#login-input", function () {
+            console.log("dgfdfrgfghgfh")
+            const input = $("#login-input").val()
+            timeout = setTimeout(() => {
+                $.get("/ajax/sign_up?login=" + input, function (response) {
+                    $("#resp-text").text(response)
+                })
+            }, 200)
+        })
+    </script>
+</#macro>
 <#macro content>
     <div id="sign_up_form">
         <form method="post" action="/sign_up">
             Sign Up:
             <label>
-                <input type="text" name="login" placeholder="login">
+                <input type="text" id="login-input" name="login" placeholder="login">
             </label>
+            <br>
+            <div id="resp-text"></div>
             <br>
             Password:
             <label>

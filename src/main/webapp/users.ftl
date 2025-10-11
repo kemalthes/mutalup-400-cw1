@@ -1,6 +1,7 @@
 <html lang="en">
 <#include "base.ftl">
 <#macro title>Users</#macro>
+<#macro scripts></#macro>
 <#macro content>
     <table>
         <caption>Users</caption>

@@ -2,6 +2,7 @@
 <html lang="en">
 <#include "base.ftl">
 <#macro title>Users</#macro>
+<#macro scripts></#macro>
 <#macro content>
     <h3>
         Hello ${user}! Login successful.

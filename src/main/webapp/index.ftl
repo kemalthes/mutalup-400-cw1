@@ -1,6 +1,7 @@
 <html lang="en">
 <#include "base.ftl">
 <#macro title>Start page</#macro>
+<#macro scripts></#macro>
 <#macro content>
     <div id="my_body" class="block">
         <h3>
