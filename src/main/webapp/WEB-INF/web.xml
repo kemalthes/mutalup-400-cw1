@@ -26,5 +26,9 @@
     <welcome-file-list>
         <welcome-file>index.ftl</welcome-file>
     </welcome-file-list>
+    
+    <error-page>
+        <location>/handle</location>
+    </error-page>
 
 </web-app>

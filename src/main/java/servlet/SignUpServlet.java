@@ -5,6 +5,7 @@ import service.UserService;
 import util.PasswordUtil;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "signUp", urlPatterns = "/sign_up")
+@MultipartConfig(maxFileSize = 5*1024*1024, maxRequestSize = 10*1024*1024)
 public class SignUpServlet extends HttpServlet {
 
     UserService service = new UserService();
@@ -31,7 +33,7 @@ public class SignUpServlet extends HttpServlet {
         String name = req.getParameter("name");
         String lastname = req.getParameter("lastname");
         if (!login.isBlank() && password.length() > 5 && service.getByLogin(login) == null) {
-            service.save(new User(null, name, lastname, login, PasswordUtil.encrypt(password)));
+            service.save(new User(null, name, lastname, login, PasswordUtil.encrypt(password), service.saveImage(req.getPart("file"))));
             HttpSession httpSession = req.getSession();
             httpSession.setAttribute("user", login);
             httpSession.setMaxInactiveInterval(60 * 60);

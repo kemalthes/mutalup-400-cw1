@@ -18,7 +18,7 @@
 </#macro>
 <#macro content>
     <div id="sign_up_form">
-        <form method="post" action="/sign_up">
+        <form method="post" action="/sign_up" enctype="multipart/form-data">
             Sign Up:
             <label>
                 <input type="text" id="login-input" name="login" placeholder="login">
@@ -41,6 +41,10 @@
                 <input type="text" name="lastname" placeholder="last name">
             </label>
             <br>
+            <h1>ЗАГРУЗИ ФАЙЛ</h1>
+            <label>
+                <input type="file" name="file"/>
+            </label>
             <input type="submit" value="Sign up">
             Уже зарегестрирован? <a href="/login">Войти</a>
         </form>

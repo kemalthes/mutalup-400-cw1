@@ -7,16 +7,18 @@ public class User {
     private String lastName;
     private String login;
     private String password;
+    private String image;
 
     public User() {
     }
 
-    public User(Integer id, String name, String lastName, String login, String password) {
+    public User(Integer id, String name, String lastName, String login, String password, String image) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.login = login;
         this.password = password;
+        this.image = image;
     }
 
     public String getName() {
@@ -37,5 +39,13 @@ public class User {
 
     public Integer getId() {
         return id;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
