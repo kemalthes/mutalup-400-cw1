@@ -1,24 +1,24 @@
 package service;
 
+import com.cloudinary.Cloudinary;
 import dao.UserDao;
 import dao.impl.UserDaoImpl;
 import dto.UserDto;
 import entity.User;
-import util.PasswordUtil;
+import util.CloudinaryUtil;
 
 import javax.servlet.http.Part;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class UserService {
 
     private final UserDao userDao = new UserDaoImpl();
+    private static final Cloudinary cloudinary = CloudinaryUtil.getInstance();
 
     public List<UserDto> getAll() {
         List<User> list = userDao.getAll();
@@ -39,22 +39,12 @@ public class UserService {
     }
 
     public String saveImage(Part part) throws IOException {
-        final String FILE_PREFIX = "D:\\Java\\Орис\\HttpSevlet\\src\\main\\webapp\\images";
-        final int DIR_COUNT = 100;
-        String filename = Paths.get(part.getSubmittedFileName()).getFileName().toString();
-        int hash = Math.abs(filename.hashCode() % DIR_COUNT);
-        String path = FILE_PREFIX + File.separator + hash + File.separator + filename;
-        File file = new File(path);
-        InputStream content = part.getInputStream();
-        if (file.getParentFile().mkdirs() &&
-                file.createNewFile()) {
-            FileOutputStream outputStream = new FileOutputStream(file);
-            byte[] buffer = new byte[content.available()];
-            content.read(buffer);
-            outputStream.write(buffer);
-            outputStream.close();
-        }
-        return "images/" + hash + "/" + filename;
+        int available = part.getInputStream().available();
+        byte[] bytes = new byte[available];
+        part.getInputStream().read(bytes);
+        cloudinary.uploader().upload(bytes, new HashMap<>());
+        Map uploadResult = cloudinary.uploader().upload(bytes, new HashMap<>());
+        return (String) uploadResult.get("secure_url");
     }
 }
 

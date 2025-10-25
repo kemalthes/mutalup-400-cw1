@@ -1,6 +1,8 @@
 package servlet;
 
 import entity.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import service.UserService;
 import util.PasswordUtil;
 
@@ -21,6 +23,7 @@ public class SignUpServlet extends HttpServlet {
 
     UserService service = new UserService();
 
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         req.getRequestDispatcher("sign_up.ftl").forward(req, resp);
@@ -32,8 +35,9 @@ public class SignUpServlet extends HttpServlet {
         String password = req.getParameter("password");
         String name = req.getParameter("name");
         String lastname = req.getParameter("lastname");
-        if (!login.isBlank() && password.length() > 5 && service.getByLogin(login) == null) {
-            service.save(new User(null, name, lastname, login, PasswordUtil.encrypt(password), service.saveImage(req.getPart("file"))));
+        if (!login.isBlank() && password.length() > 5 && !login.contains(" ") && service.getByLogin(login) == null) {
+            String path = service.saveImage(req.getPart("file"));
+            service.save(new User(null, name, lastname, login, PasswordUtil.encrypt(password), path));
             HttpSession httpSession = req.getSession();
             httpSession.setAttribute("user", login);
             httpSession.setMaxInactiveInterval(60 * 60);

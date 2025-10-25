@@ -20,6 +20,7 @@ public class FileUploadServlet extends HttpServlet {
     public static final String FILE_PREFIX = "D:\\Java\\Орис\\HttpSevlet\\tmp";
     public static final Integer DIR_COUNT = 100;
 
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Part part = req.getPart("file");
